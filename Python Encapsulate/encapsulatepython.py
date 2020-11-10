@@ -1,20 +1,66 @@
-class Car:
-    def __init__(self, speed, color):
-        self.__speed = speed
-        self.__color = color
+class Car: 
+	
+        # public data member 
+	speed = None
 
-    def set_speed(self, value):
-        self.__speed = value
+        # protected data member 
+	_color = None
+	
+        # private data member 
+	__weight = None
+	
+	# constructor 
+	def __init__(self, speed, color, weight): 
+		self.speed = speed 
+		self._color = color
+		self.__weight = weight
+	
+	# public member function 
+	def displayPublicMembers(self): 
 
-    def get_speed(self):
-        return self.speed
+		# accessing public data members 
+		print("Public Data Member: ", self.speed) 
+		
+	# protected member function 
+	def _displayProtectedMembers(self): 
 
-ford = Car(200, 'red')
-honda = Car(250, 'blue')
-audi = Car(300, 'black')
+		# accessing protected data members 
+		print("Protected Data Member: ", self._color) 
+	
+	# private member function 
+	def __displayPrivateMembers(self): 
 
-ford.set_speed(300)
-ford.__speed = 400
+		# accessing private data members 
+		print("Private Data Member: ", self.__weight) 
 
-print(ford.get_speed())
-print(ford.color)
+	# public member function 
+	def accessPrivateMembers(self):	 
+			
+		# accessing private memeber function 
+		self.__displayPrivateMembers() 
+
+# derived class 
+class wheels(Car): 
+
+	# constructor 
+	def __init__(self, speed, color, weight): 
+				Car.__init__(self, speed, color, weight) 
+			
+	# public member function 
+	def accessProtectedMemebers(self): 
+				
+				# accessing protected member functions of super class 
+				self._displayProtectedMembers() 
+
+# creating objects of the derived class	 
+obj = wheels("Ferarri", 4, "Winners !") 
+
+# calling public member functions of the class 
+obj.displayPublicMembers() 
+obj.accessProtectedMemebers() 
+obj.accessPrivateMembers() 
+
+# Object can access protected member 
+print("Object is accessing protected member:", obj._color) 
+
+
